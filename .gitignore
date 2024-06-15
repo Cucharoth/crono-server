@@ -2,9 +2,6 @@
 Secrets*.toml
 /target
 .idea
-my_conversation.json
-my_conversation.txt
-.env
 .vscode
 Secrets.toml
 
