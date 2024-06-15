@@ -1,10 +1,11 @@
 use axum::{routing::{get, post}, Router};
-use crate::{handler::{auth_handler::*, cronograma_handler::get_cronograma_by_user_id, group_handler::*, timer_handler::*}, AppState};
+use crate::{handler::{auth_handler::*, cronograma_handler::*, group_handler::*, timer_handler::*}, AppState};
 
 pub fn init_router(state: AppState) -> Router {
     /* rutas groups */
     let groups_routes = Router::new()
-        .route("/", get(get_groups));
+        .route("/", get(get_groups))
+        .route("/user/:id", get(get_groups_by_user_id));
 
     /* rutas timers */
     let timers_routes = Router::new()

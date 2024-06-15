@@ -14,7 +14,9 @@ by default, shuttle, when running on local, will try to launch a Docker containe
 
 ### local deployment:
 
-```cargo shuttle run```
+```sh
+cargo shuttle run
+```
 
 ### API
 - POST `/api/user/register`
@@ -22,4 +24,6 @@ by default, shuttle, when running on local, will try to launch a Docker containe
 - GET `/api/timers/group/:id`
 - GET `/api/timers/cronograma/:id`
 - GET `/api/cronograma/user/:id`
+- GET `/api/groups/user/:id`
+- GET `/api/groups`
 
