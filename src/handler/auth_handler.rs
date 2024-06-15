@@ -14,40 +14,33 @@ use crate::{
     AppState
 };
 
-
+/// User login
 pub async fn login(
     State(state): State<AppState>,
     Json(payload): Json<LoginInput>,
 ) -> Result<impl IntoResponse, Error> {
-    // Check if the user sent the credentials
-    // if payload.email.is_empty() || payload.password.is_empty() {
-    //     return ;
-    // }
-
-    validate_payload(&payload).expect("payload invalido.");
-
+    validate_payload(&payload)?;
     let user = AuthService::sign_in(payload, &state)
         .await
-        .map_err(|_| Error::WrongCredentials).expect("msg");
-    let token = jwt::sign(user.user_account_id).expect("msg");
-    let token_payload = TokenPayload { access_token: token, token_type: "".to_string() };
-    Ok((StatusCode::OK, Json(token_payload)))
+        .map_err(|_| Error::WrongCredentials)?;
+    let token = jwt::sign(user.user_account_id)?;
+    Ok((
+        StatusCode::OK,
+        Json(TokenPayload {
+            access_token: token,
+            token_type: "Bearer".to_string(),
+            user_name: user.name,
+        }),
+    ))
 }
 
 pub async fn register(
     State(state): State<AppState>,
     Json(input): Json<RegisterInput>,
-) -> ApiResult<(StatusCode, Json<TokenPayload>)> {
+) -> Result<impl IntoResponse, Error> {
     validate_payload(&input)?;
     let user = AuthService::sign_up(input, &state).await?;
-    let token = jwt::sign(user.user_account_id)?;
-    Ok((
-        StatusCode::CREATED,
-        Json(TokenPayload {
-            access_token: token,
-            token_type: "Bearer".to_string(),
-        }),
-    ))
+    Ok(StatusCode::CREATED)
 }
 
 #[derive(Debug, Deserialize)]

@@ -3,8 +3,7 @@ use sqlx::FromRow;
 
 
 #[derive(Debug, FromRow, Deserialize, Serialize)]
-pub struct Timer{
-    pub timer_id: i32,
+pub struct Cronograma{
+    pub cronograma_id: i32,
     pub name: String,
-    pub seconds: i32,
 }

@@ -34,7 +34,7 @@ impl User {
         .bind(data.email)
         .bind(data.password)
         .fetch_one(&state.db)
-        .await.expect("some error");
+        .await?;
 
         Ok(user)
         
