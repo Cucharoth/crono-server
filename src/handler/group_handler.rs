@@ -1,6 +1,6 @@
 use axum::{extract::{Path, State}, http::StatusCode, response::IntoResponse, Json};
 
-use crate::{error::Error, model::timer_group::TimerGroup, service::group_service::GroupService, AppState};
+use crate::{error::Error, service::group_service::GroupService, AppState};
 
 /// Gets all the groups
 /// - ex: `/api/groups`

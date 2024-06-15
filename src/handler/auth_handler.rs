@@ -1,14 +1,10 @@
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
-use axum_extra::{
-    headers::{authorization::Bearer, Authorization},
-    TypedHeader,
-};
 use serde::{Deserialize, Serialize};
-use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
+
 
 use crate::{
     dto::auth_dto::{LoginInput, RegisterInput, TokenPayload},
-    error::{ApiError, ApiResult, Error},
+    error::Error,
     service::auth_service::AuthService,
     utils::{jwt, validate_payload},
     AppState
@@ -39,18 +35,18 @@ pub async fn register(
     Json(input): Json<RegisterInput>,
 ) -> Result<impl IntoResponse, Error> {
     validate_payload(&input)?;
-    let user = AuthService::sign_up(input, &state).await?;
+    let _user = AuthService::sign_up(input, &state).await?;
     Ok(StatusCode::CREATED)
 }
 
 #[derive(Debug, Deserialize)]
 struct AuthPayload {
-    client_id: String,
-    client_secret: String,
+    _client_id: String,
+    _client_secret: String,
 }
 
 #[derive(Debug, Serialize)]
-struct AuthBody {
+struct _AuthBody {
     access_token: String,
     token_type: String,
 }

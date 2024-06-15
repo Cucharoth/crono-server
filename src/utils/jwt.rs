@@ -3,9 +3,8 @@ use std::env;
 use chrono::{Duration, Utc};
 use jsonwebtoken::{DecodingKey, EncodingKey, Header, Validation};
 use serde::{Deserialize, Serialize};
-use uuid::Uuid;
 
-use crate::{error::Result};
+use crate::error::Result;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Claims {

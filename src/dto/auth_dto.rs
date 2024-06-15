@@ -21,7 +21,7 @@ pub struct RegisterInput {
 }
 
 #[derive(Debug)]
-pub struct AuthPayload {
+pub struct _AuthPayload {
     pub token: String,
     pub user: User,
 }

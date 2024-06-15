@@ -1,6 +1,6 @@
 use axum::{extract::{Path, State}, http::StatusCode, response::IntoResponse, Json};
 
-use crate::{error::Error, model::timer::Timer, service::timer_service::TimerService, AppState};
+use crate::{error::Error, service::timer_service::TimerService, AppState};
 
 /// Gets all the timers corresponding to the provided group id
 /// - ex: `/api/timers/group/1`

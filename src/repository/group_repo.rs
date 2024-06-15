@@ -1,5 +1,5 @@
 use crate::{
-    error::Result, model::{timer_group::TimerGroup}, AppState
+    error::Result, model::timer_group::TimerGroup, AppState
 };
 
 impl TimerGroup {

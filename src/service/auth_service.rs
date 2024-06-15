@@ -1,5 +1,3 @@
-use sqlx::PgPool;
-
 use crate::{
     dto::auth_dto::{LoginInput, RegisterInput},
     error::{Error, Result},
