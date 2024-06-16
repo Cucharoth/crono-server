@@ -20,10 +20,10 @@ async fn main(#[shuttle_shared_db::Postgres(
 
 )] db: PgPool,) -> shuttle_axum::ShuttleAxum {
     dotenv::dotenv().ok();
-    sqlx::migrate!()
-        .run(&db)
-        .await
-        .expect("Failed to run migrations");
+    // sqlx::migrate!()
+    //     .run(&db)
+    //     .await
+    //     .expect("Failed to run migrations");
     let state = AppState { db };
     let router = init_router(state);
 

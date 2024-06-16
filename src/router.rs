@@ -1,4 +1,5 @@
-use axum::{routing::{get, post}, Router};
+use axum::{ http, routing::{get, post}, Router};
+use tower_http::cors::{Any, CorsLayer};
 use crate::{handler::{auth_handler::*, cronograma_handler::*, group_handler::*, timer_handler::*}, AppState};
 
 pub fn init_router(state: AppState) -> Router {
@@ -28,8 +29,12 @@ pub fn init_router(state: AppState) -> Router {
         .nest("/timers", timers_routes)
         .nest("/user", user_routes);
 
+    /* cors setup */
+    let cors = CorsLayer::permissive();
+
     // Main router creator, rutas comienzan con /api
     Router::new()
         .nest("/api", api_routes)
+        .layer(cors)
         .with_state(state)
 }

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS user_timer_group;
 DROP TABLE IF EXISTS timer_timer_group;
 DROP TABLE IF EXISTS timer;
 DROP TABLE IF EXISTS timer_group;
