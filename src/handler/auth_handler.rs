@@ -26,6 +26,7 @@ pub async fn login(
             access_token: token,
             token_type: "Bearer".to_string(),
             user_name: user.name,
+            user_id: user.user_account_id,
         }),
     ))
 }

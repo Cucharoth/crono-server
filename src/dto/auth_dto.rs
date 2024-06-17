@@ -31,4 +31,5 @@ pub struct TokenPayload {
     pub access_token: String,
     pub token_type: String,
     pub user_name: String,
+    pub user_id: i32,
 }

@@ -26,4 +26,5 @@ cargo shuttle run
 - GET `/api/cronograma/user/:id`
 - GET `/api/groups/user/:id`
 - GET `/api/groups`
+- POST `/api/user/add-group` - requires `user_id, group_id`, returns the group added to the user
 

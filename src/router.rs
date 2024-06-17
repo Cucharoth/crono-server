@@ -1,6 +1,6 @@
-use axum::{ http, routing::{get, post}, Router};
-use tower_http::cors::{Any, CorsLayer};
-use crate::{handler::{auth_handler::*, cronograma_handler::*, group_handler::*, timer_handler::*}, AppState};
+use axum::{ routing::{get, post}, Router};
+use tower_http::cors::CorsLayer;
+use crate::{handler::{auth_handler::*, cronograma_handler::*, group_handler::*, timer_handler::*, user_handler::add_group_to_user}, AppState};
 
 pub fn init_router(state: AppState) -> Router {
     /* rutas groups */
@@ -20,7 +20,8 @@ pub fn init_router(state: AppState) -> Router {
     /* rutas user */
     let user_routes = Router::new()
         .route("/login", post(login))
-        .route("/register", post(register));
+        .route("/register", post(register))
+        .route("/add-group", post(add_group_to_user));
 
     // con nest aquí, cada ruta esta separada, ej: api/user/login
     let api_routes = Router::new()

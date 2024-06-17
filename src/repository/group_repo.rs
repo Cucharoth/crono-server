@@ -3,6 +3,11 @@ use crate::{
 };
 
 impl TimerGroup {
+    pub async fn find_by_id(group_id: i32, state: &AppState) -> Result<TimerGroup> {
+        let sql = format!("SELECT * FROM timer_group WHERE timer_group_id = $1");
+        Ok(sqlx::query_as::<_, TimerGroup>(&sql).bind(group_id).fetch_one(&state.db).await?)
+    }
+
     pub async fn find_by_user_id(user_id: i32, state: &AppState) -> Result<Vec<TimerGroup>> {
         let sql = format!(
             "

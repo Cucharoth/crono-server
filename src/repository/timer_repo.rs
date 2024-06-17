@@ -1,5 +1,5 @@
 use crate::{
-    error::Result, model::{timer::Timer}, AppState
+    error::Result, model::timer::Timer, AppState
 };
 
 impl Timer {

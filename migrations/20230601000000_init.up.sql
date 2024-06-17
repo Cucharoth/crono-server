@@ -103,14 +103,15 @@ ALTER TABLE IF EXISTS public.user_timer_group
     
 INSERT INTO user_account (user_account_id, name, email, password)
 VALUES
-(1, 'Cucharoth', 'cucharoth@cucha.com', '$2b$12$IAHmqos7FFmVezNli6CD1eTu8vfW8Obkym9/Y4qUrzEFVv1qDTD8u'),
+(1, 'Cucharoth', 'cucharoth@gmail.com', '$2b$12$IAHmqos7FFmVezNli6CD1eTu8vfW8Obkym9/Y4qUrzEFVv1qDTD8u'),
 (2, 'Caramelo', 'caramelo@cucha.com', '$2b$12$IAHmqos7FFmVezNli6CD1eTu8vfW8Obkym9/Y4qUrzEFVv1qDTD8u')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO timer_group (timer_group_id, name)
 VALUES
 (1,'ESP1'),
-(2,'PRESENTACIÓN ISOFT')
+(2,'PRESENTACIÓN ISOFT'),
+(3,'INGLÉS')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO cronograma (cronograma_id, name,user_account_id)
@@ -120,10 +121,18 @@ ON CONFLICT DO NOTHING;
 
 INSERT INTO timer (timer_id, name, seconds, cronograma_id)
 VALUES
-(1, 'Intro', 5, 1),
-(2, 'Objetivo', 5, 1),
-(3, 'Tema1', 300, 1),
-(4, 'Intro', 5, 1)
+(1, 'Inicio', 5, 1),
+(2, 'Intro', 5, 1),
+(3, 'Objetivo', 300, 1),
+(4, 'Desarrollo', 5, 1),
+(5, 'Motivación', 180, 1),
+(6, 'Desarrollo', 60, 1),
+(7, 'Tema 1', 300, 1),
+(8, 'Tema 2', 300, 1),
+(9, 'Interludio', 120, 1),
+(10, 'Tema 3', 300, 1),
+(11, 'Conclusión', 300, 1),
+(12, 'Preguntas', 300, 1)
 ON CONFLICT DO NOTHING;
 
 INSERT INTO timer_timer_group (timer_id, timer_group_id)
@@ -132,7 +141,19 @@ VALUES
 (2, 1),
 (3, 1),
 (4, 1),
-(1, 2)
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(1, 2),
+(4, 2),
+(5, 3),
+(6, 3),
+(7, 3)
 ON CONFLICT DO NOTHING;
     
 INSERT INTO user_timer_group (user_account_id, timer_group_id)
