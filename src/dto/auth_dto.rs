@@ -12,11 +12,11 @@ pub struct LoginInput {
 
 #[derive(Debug, Deserialize, Validate)]
 pub struct RegisterInput {
-    #[validate(length(min = 4, max = 10))]
+    #[validate(length(min = 4, max = 15))]
     pub name: String,
     #[validate(email)]
     pub email: String,
-    #[validate(length(min = 6))]
+    #[validate(length(min = 6, max = 15))]
     pub password: String,
 }
 
@@ -32,4 +32,10 @@ pub struct TokenPayload {
     pub token_type: String,
     pub user_name: String,
     pub user_id: i32,
+}
+
+#[derive(Debug, Deserialize, Validate)]
+pub struct SocialLogin {
+    pub email: String,
+    pub name: String,
 }

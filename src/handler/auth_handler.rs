@@ -3,12 +3,29 @@ use serde::{Deserialize, Serialize};
 
 
 use crate::{
-    dto::auth_dto::{LoginInput, RegisterInput, TokenPayload},
+    dto::auth_dto::{LoginInput, RegisterInput, SocialLogin, TokenPayload},
     error::Error,
     service::auth_service::AuthService,
     utils::{jwt, validate_payload},
     AppState
 };
+
+pub async fn social_login(
+    State(state): State<AppState>,
+    Json(social_login): Json<SocialLogin>,
+) -> Result<impl IntoResponse, Error> {
+    let user = AuthService::social_login(social_login.email, social_login.name, &state).await?;
+    let token = jwt::sign(user.user_account_id)?;
+    Ok((
+        StatusCode::OK,
+        Json(TokenPayload {
+            access_token: token,
+            token_type: "Bearer".to_string(),
+            user_name: user.name,
+            user_id: user.user_account_id,
+        }),
+    ))
+}
 
 /// User login
 pub async fn login(

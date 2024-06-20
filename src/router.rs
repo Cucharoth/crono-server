@@ -19,6 +19,7 @@ pub fn init_router(state: AppState) -> Router {
 
     /* rutas user */
     let user_routes = Router::new()
+        .route("/social-login", post(social_login))
         .route("/login", post(login))
         .route("/register", post(register))
         .route("/add-group", post(add_group_to_user));

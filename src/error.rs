@@ -20,9 +20,9 @@ pub enum Error {
     WrongCredentials,
     #[error("password doesn't match")]
     WrongPassword,
-    #[error("email is already taken")]
+    #[error("el correo ya existe")]
     DuplicateUserEmail,
-    #[error("name is already taken")]
+    #[error("el nombre ya existe")]
     DuplicateUserName,
 }
 pub type Result<T> = std::result::Result<T, Error>;
@@ -48,6 +48,8 @@ impl IntoResponse for Error {
             Error::WrongCredentials => (StatusCode::UNAUTHORIZED, "Invalid credentials".to_string()),
             Error::WrongPassword => (StatusCode::INTERNAL_SERVER_ERROR, "JWT signing error".to_string()),
             Error::SqlxError(why) => (StatusCode::BAD_REQUEST, why.to_string()),
+            Error::DuplicateUserEmail => (StatusCode::BAD_REQUEST, Error::DuplicateUserEmail.to_string()),
+            Error::DuplicateUserName => (StatusCode::BAD_REQUEST, Error::DuplicateUserName.to_string()),
             _ => (StatusCode::INTERNAL_SERVER_ERROR, "Internal server error".to_string()),
         };
         (status, body).into_response()
