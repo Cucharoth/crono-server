@@ -1,9 +1,7 @@
-use std::f32::consts::E;
-
 use rand::Rng;
 
 use crate::{
-    dto::auth_dto::{LoginInput, RegisterInput, SocialLogin},
+    dto::auth_dto::{LoginInput, RegisterInput},
     error::{Error, Result},
     model::user::User,
     utils::encryption, AppState,

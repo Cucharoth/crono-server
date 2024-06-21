@@ -26,12 +26,12 @@ cargo shuttle run
 
 ### API
 - POST `/api/user/register` - requires `name, email, password`
-- POST `/api/user/login` - requires `email, password`, returns tokenPayload {`access_token, token_type, user_name, user_id`}
+- POST `/api/user/login` - requires `email, password`, returns tokenPayload {`access_token, token_type, user_name`}
 - POST `/api/user/social-login` - requires `name, email`, return tokenPayload
 - GET `/api/timers/group/:id`
 - GET `/api/timers/cronograma/:id`
-- GET `/api/cronograma/user/:id`
-- GET `/api/groups/user/:id`
+- GET `/api/cronograma/user`
+- GET `/api/groups/user`
 - GET `/api/groups`
-- POST `/api/user/add-group` - requires `user_id, group_id`, returns the group added to the user
+- POST `/api/user/add-group` - requires `group_id`, returns the group added to the user
 

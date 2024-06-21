@@ -45,7 +45,7 @@ impl From<Error> for ApiError {
 impl IntoResponse for Error {
     fn into_response(self) -> Response {
         let (status, body) = match self {
-            Error::WrongCredentials => (StatusCode::UNAUTHORIZED, "Invalid credentials".to_string()),
+            Error::WrongCredentials => (StatusCode::UNAUTHORIZED, "Credenciales invalidas".to_string()),
             Error::WrongPassword => (StatusCode::INTERNAL_SERVER_ERROR, "JWT signing error".to_string()),
             Error::SqlxError(why) => (StatusCode::BAD_REQUEST, why.to_string()),
             Error::DuplicateUserEmail => (StatusCode::BAD_REQUEST, Error::DuplicateUserEmail.to_string()),

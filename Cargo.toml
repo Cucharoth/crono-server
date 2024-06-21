@@ -20,5 +20,6 @@ bcrypt = "0.10"
 rayon = "1.5"
 thiserror = "1"
 chrono = { version = "0.4", features = ["serde"] }
-tower-http = { version = "0.5.0", features = ["cors"] }
+tracing = "0.1.4"
+tower-http = { version = "0.5.2", features = ["cors", "trace"] }
 rand = "0.8.5"

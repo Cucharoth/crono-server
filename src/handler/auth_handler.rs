@@ -10,6 +10,11 @@ use crate::{
     AppState
 };
 
+/// Grants access to an existing user using the provided `SocialLogin`.
+/// 
+/// If the user doesn't previously exists, it's registered and validated.
+/// - ex: `/api/user/social-login`
+/// returns a `TokenPayload`
 pub async fn social_login(
     State(state): State<AppState>,
     Json(social_login): Json<SocialLogin>,
@@ -22,12 +27,13 @@ pub async fn social_login(
             access_token: token,
             token_type: "Bearer".to_string(),
             user_name: user.name,
-            user_id: user.user_account_id,
         }),
     ))
 }
 
-/// User login
+/// Grants access to an existing user validating the provided `LoginInput`.
+/// - ex: `/api/user/login`
+/// returns a `TokenPayload`
 pub async fn login(
     State(state): State<AppState>,
     Json(payload): Json<LoginInput>,
@@ -43,11 +49,13 @@ pub async fn login(
             access_token: token,
             token_type: "Bearer".to_string(),
             user_name: user.name,
-            user_id: user.user_account_id,
         }),
     ))
 }
 
+
+/// Registers a new user into the system.
+/// - ex: `/api/user/register`
 pub async fn register(
     State(state): State<AppState>,
     Json(input): Json<RegisterInput>,
