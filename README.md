@@ -5,6 +5,7 @@ This currently provides:
 - Axum API REST
 - JWT authentication
 - Database interaction
+- Social login
 - Password encryption
 - Setup for a Shuttle deployment
 
@@ -28,6 +29,8 @@ cargo shuttle run
 - POST `/api/user/register` - requires `name, email, password`
 - POST `/api/user/login` - requires `email, password`, returns tokenPayload {`access_token, token_type, user_name`}
 - POST `/api/user/social-login` - requires `name, email`, return tokenPayload
+
+Require authorization:
 - GET `/api/timers/group/:id`
 - GET `/api/timers/cronograma/:id`
 - GET `/api/cronograma/user`
