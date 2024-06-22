@@ -12,7 +12,7 @@ shuttle-axum = "0.45.0"
 shuttle-runtime = "0.45.0"
 shuttle-shared-db = { version = "0.45.0", features = ["postgres", "sqlx"] }
 tokio = "1.28.2"
-sqlx = "0.7.1"
+sqlx = { version = "0.7.1", features = ["postgres", "runtime-tokio-rustls", "macros"] }
 jsonwebtoken = "8.0"
 validator = { version = "0.14", features = ["derive"] }
 dotenv = "0.15"

@@ -6,7 +6,8 @@ pub fn init_router(state: AppState) -> Router {
     /* rutas groups */
     let groups_routes = Router::new()
         .route("/", get(get_groups))
-        .route("/user", get(get_groups_by_user));
+        .route("/user", get(get_groups_by_user))
+        .route("/new", post(create_group));
 
     /* rutas timers */
     let timers_routes = Router::new()
