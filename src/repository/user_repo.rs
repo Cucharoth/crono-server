@@ -16,7 +16,7 @@ impl User {
         Ok(sqlx::query_as(&sql).bind(user_id).bind(group_id).fetch_one(&state.db).await?)
     }
 
-    pub async fn _find_by_id(id: i32, state: &AppState) -> Result<User> {
+    pub async fn find_by_id(id: i32, state: &AppState) -> Result<User> {
         let sql = format!("SELECT * FROM user_account WHERE id = $1 LIMIT 1");
         Ok(sqlx::query_as::<_, User>(&sql).bind(id).fetch_one(&state.db).await?)
     }

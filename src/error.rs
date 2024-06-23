@@ -24,6 +24,8 @@ pub enum Error {
     DuplicateUserEmail,
     #[error("el nombre ya existe")]
     DuplicateUserName,
+    #[error("¡Ya has creado un grupo con ese nombre!")]
+    DuplicateUserGroupName,
 }
 pub type Result<T> = std::result::Result<T, Error>;
 
@@ -50,6 +52,7 @@ impl IntoResponse for Error {
             Error::SqlxError(why) => (StatusCode::BAD_REQUEST, why.to_string()),
             Error::DuplicateUserEmail => (StatusCode::BAD_REQUEST, Error::DuplicateUserEmail.to_string()),
             Error::DuplicateUserName => (StatusCode::BAD_REQUEST, Error::DuplicateUserName.to_string()),
+            Error::DuplicateUserGroupName => (StatusCode::BAD_REQUEST, Error::DuplicateUserGroupName.to_string()),
             _ => (StatusCode::INTERNAL_SERVER_ERROR, "Internal server error".to_string()),
         };
         (status, body).into_response()

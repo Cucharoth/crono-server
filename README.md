@@ -36,6 +36,6 @@ Require authorization:
 - GET `/api/cronograma/user`
 - GET `/api/groups/user`
 - GET `/api/groups`
-- POST `/api/groups/new` - requires `timer_group_id, name, timers[{timer_id, name, seconds}]` returns the new `Group{timer_group_id, name, timers[]}`
+- POST `/api/groups/new` - requires `timer_group_id, name, timers[{timer_id, name, seconds}]` returns the new `Group{timer_group_id, is_owner, name, timers[]}`
 - POST `/api/user/add-group` - requires `group_id`, returns the group added to the user
 
