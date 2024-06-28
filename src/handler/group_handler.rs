@@ -1,6 +1,17 @@
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
 
-use crate::{dto::groups_dto::CreateGroupsDto, error::Error, service::group_service::GroupService, utils::jwt::Claims, AppState};
+use crate::{dto::groups_dto::{CreateGroupsDto, TimerGroupDto}, error::Error, service::group_service::GroupService, utils::jwt::Claims, AppState};
+
+pub async fn delete_group(
+    State(state): State<AppState>,
+    user: Claims,
+    Json(timer_group_dto): Json<TimerGroupDto>
+) -> Result<impl IntoResponse, Error> {
+    match GroupService::delete_group(user.id, timer_group_dto, &state).await {
+        Ok(_) => Ok((StatusCode::OK, "¡Borrado exitosamente!")),
+        Err(why) => Err(why),
+    }
+}
 
 /// Creates new group with provided Schedule
 /// - ex: `/api/groups/new`

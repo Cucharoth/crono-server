@@ -1,4 +1,4 @@
-use axum::{ routing::{get, post}, Router};
+use axum::{ routing::{delete, get, post}, Router};
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
 use crate::{handler::{auth_handler::*, cronograma_handler::*, group_handler::*, timer_handler::*, user_handler::add_group_to_user}, AppState};
 
@@ -7,7 +7,8 @@ pub fn init_router(state: AppState) -> Router {
     let groups_routes = Router::new()
         .route("/", get(get_groups))
         .route("/user", get(get_groups_by_user))
-        .route("/new", post(create_group));
+        .route("/new", post(create_group))
+        .route("/delete", delete(delete_group));
 
     /* rutas timers */
     let timers_routes = Router::new()

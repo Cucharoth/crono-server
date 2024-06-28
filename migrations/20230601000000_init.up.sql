@@ -65,8 +65,8 @@ ALTER TABLE IF EXISTS public.timer_group
 ALTER TABLE IF EXISTS public.timer
     ADD FOREIGN KEY (cronograma_id)
     REFERENCES public.cronograma (cronograma_id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+    ON DELETE SET NULL
     NOT VALID;
 
 
@@ -81,16 +81,16 @@ ALTER TABLE IF EXISTS public.cronograma
 ALTER TABLE IF EXISTS public.timer_timer_group
     ADD FOREIGN KEY (timer_group_id)
     REFERENCES public.timer_group (timer_group_id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
     NOT VALID;
 
 
 ALTER TABLE IF EXISTS public.timer_timer_group
     ADD FOREIGN KEY (timer_id)
     REFERENCES public.timer (timer_id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
     NOT VALID;
 
 
@@ -105,8 +105,8 @@ ALTER TABLE IF EXISTS public.user_timer_group
 ALTER TABLE IF EXISTS public.user_timer_group
     ADD FOREIGN KEY (timer_group_id)
     REFERENCES public.timer_group (timer_group_id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
     NOT VALID;
 
     

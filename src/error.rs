@@ -26,6 +26,8 @@ pub enum Error {
     DuplicateUserName,
     #[error("¡Ya has creado un grupo con ese nombre!")]
     DuplicateUserGroupName,
+    #[error("¡El usuario no es el autor del grupo!")]
+    NotTheGroupOwner,
 }
 pub type Result<T> = std::result::Result<T, Error>;
 
