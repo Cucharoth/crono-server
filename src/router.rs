@@ -1,4 +1,4 @@
-use axum::{ routing::{delete, get, post}, Router};
+use axum::{ routing::{delete, get, post, put}, Router};
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
 use crate::{handler::{auth_handler::*, cronograma_handler::*, group_handler::*, timer_handler::*, user_handler::add_group_to_user}, AppState};
 
@@ -17,7 +17,11 @@ pub fn init_router(state: AppState) -> Router {
 
     /* rutas cronograma */
     let cronograma_routes = Router::new()
-        .route("/user", get(get_cronograma_by_user));
+        .route("/user", get(get_cronograma_by_user))
+        .route("/new", post(create_cronograma))
+        .route("/update", put(edit_cronograma))
+        .route("/delete", delete(delete_cronograma))
+        .route("/add-timer", post(add_timer));
 
     /* rutas user */
     let user_routes = Router::new()

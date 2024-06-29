@@ -33,9 +33,13 @@ cargo shuttle run
 Require authorization:
 - GET `/api/timers/group/:id`
 - GET `/api/timers/cronograma/:id`
-- GET `/api/cronograma/user`
-- GET `/api/groups/user`
+- GET `/api/cronograma/user` - returns all the user's cronogramas with their timers
+- GET `/api/groups/user`- returns all the user's groups with their timers
 - GET `/api/groups`
 - POST `/api/groups/new` - requires `timer_group_id, name, timers[{timer_id, name, seconds}]` returns the new `Group{timer_group_id, is_owner, name, timers[]}`
+- DELETE `/api/groups/delete` - requires `timer_group_id, name, owner, owner_name`
 - POST `/api/user/add-group` - requires `group_id`, returns the group added to the user
-
+- POST `/api/cronograma/new` - requires `cronograma_id, name`, returns the cronograma
+- PUT `/api/cronograma/update` - requires `cronograma_id, name`, returns the cronograma
+- DELETE `/api/cronograma/delete` - requires `cronograma_id, name`
+- POST `/api/cronograma/add-timer` - requires `cronograma_id, timer: {name, seconds}` returns the timer

@@ -2,6 +2,8 @@ use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
 
 use crate::{dto::groups_dto::{CreateGroupsDto, TimerGroupDto}, error::Error, service::group_service::GroupService, utils::jwt::Claims, AppState};
 
+/// Deletes the provided `TimerGroup`
+/// - ex: `/api/groups/delete`
 pub async fn delete_group(
     State(state): State<AppState>,
     user: Claims,

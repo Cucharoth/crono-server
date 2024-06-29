@@ -28,6 +28,10 @@ pub enum Error {
     DuplicateUserGroupName,
     #[error("¡El usuario no es el autor del grupo!")]
     NotTheGroupOwner,
+    #[error("¡El usuario no es el autor del cronograma!")]
+    NotTheCronogramaOwner,
+    #[error("Not found")]
+    NotFound,
 }
 pub type Result<T> = std::result::Result<T, Error>;
 
@@ -55,6 +59,9 @@ impl IntoResponse for Error {
             Error::DuplicateUserEmail => (StatusCode::BAD_REQUEST, Error::DuplicateUserEmail.to_string()),
             Error::DuplicateUserName => (StatusCode::BAD_REQUEST, Error::DuplicateUserName.to_string()),
             Error::DuplicateUserGroupName => (StatusCode::BAD_REQUEST, Error::DuplicateUserGroupName.to_string()),
+            Error::NotTheGroupOwner => (StatusCode::BAD_REQUEST, Error::NotTheGroupOwner.to_string()),
+            Error::NotTheCronogramaOwner => (StatusCode::BAD_REQUEST, Error::NotTheCronogramaOwner.to_string()),
+            Error::NotFound => (StatusCode::NOT_FOUND, Error::NotFound.to_string()),
             _ => (StatusCode::INTERNAL_SERVER_ERROR, "Internal server error".to_string()),
         };
         (status, body).into_response()

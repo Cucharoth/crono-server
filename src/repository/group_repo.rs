@@ -19,7 +19,7 @@ impl TimerGroup {
         Ok(sqlx::query_as::<_, TimerGroup>(&sql).bind(group_name).bind(owner_id).fetch_one(&state.db).await?)
     }
 
-    pub async fn find_by_name(group_name: &str, state: &AppState) -> Result<TimerGroup> {
+    pub async fn _find_by_name(group_name: &str, state: &AppState) -> Result<TimerGroup> {
         let sql = format!("SELECT * FROM timer_group WHERE name = $1");
         Ok(sqlx::query_as::<_, TimerGroup>(&sql).bind(group_name).fetch_one(&state.db).await?)
     }

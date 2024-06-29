@@ -1,10 +1,8 @@
 use serde::{Deserialize, Serialize};
 use sqlx::FromRow;
 
-
 #[derive(Debug, FromRow, Deserialize, Serialize)]
-pub struct Cronograma{
-    pub cronograma_id: i32,
+pub struct TimerDto {
     pub name: String,
-    pub user_account_id: i32,
+    pub seconds: i32,
 }
